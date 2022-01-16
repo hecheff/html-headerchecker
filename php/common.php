@@ -1,7 +1,7 @@
 <?php
     function getTargetHTML($url = false, $useragent_type = "") {
         if ($url) {
-            $site_raw = htmlspecialchars(file_get_contents_curl($url));
+            $site_raw = file_get_contents_curl($url);
             // $site_raw = getPageHTML_curl($url);
             if ($site_raw[0] != "[") {
                 $site_raw = htmlspecialchars($site_raw);
@@ -41,8 +41,6 @@
         }
         
         $output = curl_exec($curl);
-        curl_close($curl);
-
         $retcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
         if ($retcode == 200) {
