@@ -1,0 +1,39 @@
+$color_bg_main:             #FFFFFF;
+$color_bg_header_footer:    #000000;
+
+$color_text:                #000000;
+$color_button:              #3d8705;
+
+$color_nesp_gold:           #876c43;
+$color_copyright:           #858585;
+
+$fontsize_default: 10pt;
+
+$height_header: 80px;
+$header_footer_padding: 10px;
+$height_footer: 100px;
+$height_main_min: calc(100vh - #{$height_header} - #{$height_footer} - #{$header_footer_padding * 4});
+
+
+// Transition properties
+$animationTransition: 0.1s;
+$transitionProperties: all $animationTransition ease-in;
+// Include transition set for cross-browser compatibility
+@mixin transitionSet() {
+    -webkit-transition:   $transitionProperties;
+    -moz-transition:      $transitionProperties;
+    -ms-transition:       $transitionProperties;
+    -o-transition:        $transitionProperties;
+    transition:           $transitionProperties;
+}
+@mixin transitionSet_none() {
+    -webkit-transition:   none;
+    -moz-transition:      none;
+    -ms-transition:       none;
+    -o-transition:        none;
+    transition:           none;
+}
+
+@mixin boxShadow_default() {
+    box-shadow: 5px 5px 5px #00000033;
+}
