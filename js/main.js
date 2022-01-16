@@ -16,7 +16,11 @@ function getHTML() {
             useragent_type: input_useragent_type, 
         },
         success: function (data) {
-            textarea_output.html(data.html);
+            if (!data.html.startsWith('[')) {
+                textarea_output.html(data.html);
+            } else {
+                alert("ERROR: Data retrieval failed. ERROR: " + data.html);
+            }
             actionButton.prop('disabled', false);
         },
         error: function () {

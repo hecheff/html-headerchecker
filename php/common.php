@@ -3,13 +3,13 @@
         if ($url) {
             // $site_raw = htmlspecialchars(file_get_contents_curl($url));
             $site_raw = getPageHTML_curl($url);
-            if ($site_raw) {
+            if ($site_raw[0] != "[") {
                 $site_raw = htmlspecialchars(getPageHTML_curl($url, $useragent_type));
                 $values = ['html' => $site_raw];
-                $output = json_encode($values);
-                echo $output;
+                echo json_encode($values);
             } else {
-                echo false;
+                $values = ['html' => $site_raw];
+                echo json_encode($values);
             }
         } else {
             echo false;
@@ -47,7 +47,7 @@
         if ($retcode == 200) {
             return $output;
         } else {
-            return null;
+            return "[".$retcode."]";
         }
     }
 
