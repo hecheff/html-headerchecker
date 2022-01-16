@@ -21,6 +21,7 @@ function getHTML() {
         },
         error: function () {
             alert("ERROR: Data retrieval failed.");
+            actionButton.prop('disabled', false);
         }
     });
 }
