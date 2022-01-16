@@ -1,10 +1,11 @@
 <?php
     function getTargetHTML($url = false, $useragent_type = "") {
         if ($url) {
-            // $site_raw = htmlspecialchars(file_get_contents_curl($url));
-            $site_raw = getPageHTML_curl($url);
+            $site_raw = htmlspecialchars(file_get_contents_curl($url));
+            // $site_raw = getPageHTML_curl($url);
             if ($site_raw[0] != "[") {
-                $site_raw = htmlspecialchars(getPageHTML_curl($url, $useragent_type));
+                $site_raw = htmlspecialchars($site_raw);
+                // $site_raw = htmlspecialchars(getPageHTML_curl($url, $useragent_type));
                 $values = ['html' => $site_raw];
                 echo json_encode($values);
             } else {
@@ -72,7 +73,7 @@ if (!function_exists('file_get_contents_curl')) {
         if ($retcode == 200) {
             return $data;
         } else {
-            return null;
+            return "[".$retcode."]";
         }
     }
 }
