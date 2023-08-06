@@ -29,7 +29,7 @@
             // curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/webcrawler.html) Gecko/2008032620');
             // curl_setopt($curl, CURLOPT_REFERER, 'https://www.nespresso.com/jp/ja/');
             getPageHTML_curl_v2($url);
-            return false;
+            exit();
         } else {
             curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
             curl_setopt($curl, CURLOPT_AUTOREFERER, true);
