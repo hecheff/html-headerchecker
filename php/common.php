@@ -48,7 +48,8 @@
 
     function getPageHTML_curl_nesp ($url) {
         $curl = curl_init();
-        $user_agent = 'Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/spider.html;) Gecko/2008032620';
+        // $user_agent = 'Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/spider.html;) Gecko/2008032620';
+        $user_agent = 'User-Agent: curl/7.39.0';
 
         curl_setopt_array($curl, [
             CURLOPT_URL => $url,
