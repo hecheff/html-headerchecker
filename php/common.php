@@ -64,8 +64,6 @@
         ]);
 
         $response = curl_exec($curl);
-        curl_close($curl);
-        
         $retcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
