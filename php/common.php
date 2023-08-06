@@ -1,7 +1,12 @@
 <?php
     function getTargetHTML($url = false, $useragent_type = "") {
         if ($url) {
-            $site_raw = getPageHTML_curl($url, $useragent_type);
+            if ($useragent_type == 'nesp') {
+                $site_raw = getPageHTML_curl_nesp($url);
+            } else {
+                $site_raw = getPageHTML_curl($url);
+            }
+            
             // $site_raw = file_get_contents_curl($url);
             if ($site_raw[0] != "[") {
                 $site_raw = htmlspecialchars($site_raw);
@@ -18,22 +23,13 @@
 
 
     // Get target webpage using customized CURL method
-    function getPageHTML_curl($url, $useragent_type = "", $http_header = []) {
+    function getPageHTML_curl($url, $http_header = []) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        // Set compatible useragent according to given type, otherwise use working default
-        if ($useragent_type == "nesp") {
-            // curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/webcrawler.html) Gecko/2008032620');
-            // curl_setopt($curl, CURLOPT_REFERER, 'https://www.nespresso.com/jp/ja/');
-            getPageHTML_curl_v2($url);
-            exit();
-        } else {
-            curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
-            curl_setopt($curl, CURLOPT_AUTOREFERER, true);
-        }
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36');
+        curl_setopt($curl, CURLOPT_AUTOREFERER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 
         if (!empty($http_header)) {
@@ -50,7 +46,7 @@
         }
     }
 
-    function getPageHTML_curl_v2 ($url) {
+    function getPageHTML_curl_nesp ($url) {
         $curl = curl_init();
         $user_agent = 'Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/spider.html;) Gecko/2008032620';
 
