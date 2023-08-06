@@ -24,7 +24,8 @@ function getHTML() {
             actionButton.prop('disabled', false);
         },
         error: function () {
-            alert("ERROR: Data retrieval failed.");
+            // alert("ERROR: Data retrieval failed.");
+            alert("ERROR: Data retrieval failed. ERROR DUMP: " + data.html);
             actionButton.prop('disabled', false);
         }
     });
